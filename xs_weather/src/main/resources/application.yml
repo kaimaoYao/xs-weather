@@ -1,0 +1,78 @@
+server:
+  port: 80
+#  undertow:
+#    buffer-size: 1024
+#    direct-buffers: true
+#    threads:
+#      io: 16
+#      worker: 400
+#  servlet:
+#    context-path:
+
+spring:
+#  profiles:
+#    active: @profiles.active@
+
+  cache:
+    type: redis
+  datasource:
+    #JDBC\u57FA\u672C\u914D\u7F6E
+    url: jdbc:mysql://8.136.183.49:3306/houses?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useAffectedRows=true&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      validation-query: select 1
+      validation-query-timeout: 2000
+      initial-size: 5
+      max-active: 20
+      min-idle: 5
+      max-wait: 60000
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      stat-view-servlet:
+        enabled: true
+        login-username: hoshaoniurou
+        login-password: fuck
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: '*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*'
+        session-stat-enable: true
+        session-stat-max-count: 10
+  redis:
+    database: 10
+    host: 8.136.183.49
+    port: 6379
+    password: wellan_2825522A
+    timeout: 5000
+    jedis:
+      pool:
+        # \u8FDE\u63A5\u6C60\u6700\u5927\u8FDE\u63A5\u6570\uFF08\u8D1F\u503C\u8868\u793A\u65E0\u9650\u5236\uFF09
+        max-active: 8
+        # \u8FDE\u63A5\u6C60\u6700\u5927\u963B\u585E\u7B49\u5F85\u65F6\u95F4\uFF08\u8D1F\u503C\u65E0\u9650\u5236)
+        max-wait: 5000
+        # \u6700\u5927\u7A7A\u95F2\u94FE\u63A5\u6570
+        max-idle: 8
+        # \u6700\u5C0F\u7A7A\u95F2\u94FE\u63A5\u6570
+        min-idle: 1
+
+logging:
+  level:
+    com.wx.weather: debug
+#    org.springframework.boot: debug
+bee:
+  db:
+    db-name: mysql
+    driver-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.136.83.49:3306/houses?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useAffectedRows=true&useSSL=false
+    username: root
+    password: 123456
+  osql:
+    naming:
+      translate-type: 1
+    showSQL: true
